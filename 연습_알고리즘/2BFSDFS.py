@@ -45,7 +45,7 @@ def solve():
     # 적합한 모든 노드에서 BFS
     for i in range(len(graph)):
         for j in range(len(graph[0])):
-            if graph[i][j]==0 and not visited: # 0이고 방문 안한 노드
+            if graph[i][j]==0 and not visited[i][j]: # 0이고 방문 안한 노드
                 BFS(i,j,visited)
                 count+=1
     return count
