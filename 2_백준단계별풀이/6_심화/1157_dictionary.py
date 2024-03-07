@@ -15,4 +15,10 @@ max_key=max(word_count) # value들 중 최대값을 가진 key
 
 # 최대값이 여러개일 때는 ? 출력
 max_value=max(word_count.values()) # 전체 value들 리스트에서 최대값
+max_keys = [k for k, v in word_count.items() if v == max_value]  # 최대값을 가지는 모든 key
 
+# 최대값이 여러개일 때는 ? 출력
+if len(max_keys) > 1:
+    print('?')
+else:
+    print(max_keys[0])
