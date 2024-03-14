@@ -19,31 +19,27 @@ def fibo_dp(number):
     # 실행횟수를 반환
     return cnt
 
-cntR=0
-def fibo_recursion_global(number):
-    global cntR
-    cntR+=1 # 함수 호출 시 
+cnt=0
+def fibo_recursion(number):
+    # 함수가 호출될 때 마다 전역변수값을 올리면됨!
+    global cnt
+    cnt+=1
     if number==0:
         return 0
     elif number==1:
         return 1
     else: 
-        return fibo_recursion_global(number-2)+fibo_recursion_global(number-1)
+        return fibo_recursion(number-2)+fibo_recursion(number-1)
     
-def fibo_recursion(number):
-    if number==0:
-        return (0,1) # 피보나치 값과 실행 횟수를 튜플로 반환
-    elif number==1:
-        return (1,1)
-    else: 
-        result1, cnt1 = fibo_recursion(number-2)
-        result2, cnt2 = fibo_recursion(number-1)
-        return (result1+result2,cnt1+cnt2+1) # 결과값은 튜플 1번째, count값은 2번째.
+def fibo_tuple(number):
+    if number == 0:
+        return (0, 1)  # 피보나치 값과 실행 횟수를 튜플로 반환
+    elif number == 1:
+        return (1, 1)  # 피보나치 값과 실행 횟수를 튜플로 반환
+    else:
+        result1, cnt1 = fibo_tuple(number-2)
+        result2, cnt2 = fibo_tuple(number-1)
+        return (result1 + result2, cnt1 + cnt2 + 1)  # 두 호출의 결과와 실행 횟수를 합산하여 반환
 
 
-n=int(input())
-fibo_recursion_global(n)
-ans,ans_r=fibo_recursion(n)
-ans_dp=fibo_dp(n)
-#print(cntR, ans_r,ans_dp)
-print(ans_r,ans_dp)
+print(fibo_recursion(int(input())),fibo_dp(int(input())))
